@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -o errexit 
-
+export GO111MODULE=off
 # compile specified module
 modules=(collector receiver)
 

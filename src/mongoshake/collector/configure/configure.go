@@ -48,6 +48,7 @@ type Configuration struct {
 	FullSyncReaderOplogStoreDisk         bool   `config:"full_sync.reader.oplog_store_disk"`
 	FullSyncReaderOplogStoreDiskMaxSize  int64  `config:"full_sync.reader.oplog_store_disk_max_size"`
 	FullSyncExecutorInsertOnDupUpdate    bool   `config:"full_sync.executor.insert_on_dup_update"`
+	FullSyncExecutorInsertDuplicateErrorIgnore bool   `config:"full_sync.executor.insert_duplicate_error_ignore"`
 	FullSyncExecutorFilterOrphanDocument bool   `config:"full_sync.executor.filter.orphan_document"`
 	FullSyncExecutorMajorityEnable       bool   `config:"full_sync.executor.majority_enable"`
 

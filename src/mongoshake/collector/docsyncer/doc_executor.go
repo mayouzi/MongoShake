@@ -240,9 +240,13 @@ func (exec *DocExecutor) tryOneByOne(input []interface{}, index int, collectionH
 		}
 
 		if !conf.Options.FullSyncExecutorInsertOnDupUpdate {
-			return fmt.Errorf("duplicate key error[%v], you can clean the document on the target mongodb, " +
-				"or enable %v to solve, but full-sync stage needs restart",
-				err, "full_sync.executor.insert_on_dup_update")
+			if !conf.Options.FullSyncExecutorInsertDuplicateErrorIgnore {
+				return fmt.Errorf("duplicate key error[%v], you can clean the document on the target mongodb, " +
+					"or enable %v to solve, but full-sync stage needs restart",
+					err, "full_sync.executor.insert_on_dup_update")
+			} else {
+				LOG.Info("ignore full_sync insert duplicate error key[%v]", id)
+			}
 		} else {
 			// convert insert operation to update operation
 			if id == nil {
