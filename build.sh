@@ -2,6 +2,10 @@
 
 set -o errexit 
 export GO111MODULE=off
+# fix macos 10.13 warning: text-based stub file /System/Library/Frameworks//CoreFoundation.framework/CoreFoundation.tbd
+# and library file /System/Library/Frameworks//CoreFoundation.framework/CoreFoundation are out of sync. Falling back
+# to library file for linking
+export SDKROOT=macosx10.14
 # compile specified module
 modules=(collector receiver)
 

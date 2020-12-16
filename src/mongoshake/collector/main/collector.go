@@ -55,6 +55,9 @@ func main() {
 		crash(fmt.Sprintf("Configure file %s parse failed. %v", *configuration, err), -2)
 	}
 
+	// remove repetitive FilterNamespace
+	conf.Options.RemoveRepetitiveFilterNamespace()
+
 	// verify collector options and revise
 	if err = SanitizeOptions(); err != nil {
 		crash(fmt.Sprintf("Conf.Options check failed: %s", err.Error()), -4)

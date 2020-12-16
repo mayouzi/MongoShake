@@ -124,3 +124,21 @@ func GetSafeOptions() Configuration {
 
 	return *polish
 }
+
+func removeRepetitive(inputList []string)[]string {
+	uniqueList := make([]string, 0)
+	itemMap := make(map[string]bool)
+
+	for _, item := range inputList {
+		if _, ok := itemMap[item]; !ok {
+			itemMap[item] = true
+			uniqueList = append(uniqueList, item)
+		}
+	}
+	return uniqueList
+}
+
+func (configuration *Configuration) RemoveRepetitiveFilterNamespace() {
+	configuration.FilterNamespaceWhite = removeRepetitive(configuration.FilterNamespaceWhite)
+	configuration.FilterNamespaceBlack = removeRepetitive(configuration.FilterNamespaceBlack)
+}
